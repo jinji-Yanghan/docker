@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+service CaptchaService {
+    rpc SendSMSCaptcha(SendSMSRequest) returns (SendSMSResponse) {}
+    rpc SendVoiceCaptcha(SendVoiceRequest) returns (SendVoiceResponse) {}
+}
+
+
+message SendSMSRequest {
+    string mobile = 1; // Mobile number
+    string captcha = 2; // Captcha
+    int32 expired_minutes = 3; // Expired time in minutes
+    int32 template_id = 4; // Template ID
+}
+
+message SendSMSResponse {
+    int32 ret = 1;
+}
+
+message SendVoiceRequest {
+    string mobile = 1; // Mobile number
+    string captcha = 2; // Captcha
+    int32 play_times = 3;
+}
+
+message SendVoiceResponse {
+    int32 ret = 1;
+}

@@ -1,0 +1,14 @@
+FROM skoogi/base
+
+RUN mkdir -p /usr/src/service
+WORKDIR /usr/src/service
+
+RUN mkdir ~/.ssh
+RUN touch ~/.ssh/id_rsa.pub
+RUN echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCj8u5eqpFr/iRuEjaM0N19n/nJnQEK18jkpSm5CqwbqLflF3FwsYT7AG77/lj6M5TXUUwL9cIS8mJ7/leCUoEtkYEqaaJvautCqY+b/Wb/5WR8XbCOrGR7SVhVdIo0A+vj/9l1jgf/dcemlv8O0wataoSMKwKq1q63GYzSNlvPOR3aDtyglIjAyCXTn9RgNltz5rqgsQAz0AodyRdfDPlcH3B+NED/0ioSxYfGomsWr7KDqDsD6D5KAlm2UTjDHulmFbr++q3JGuqfAkBtP9YisfrQ/eWA/qIWOFJ9N2UOtFJ8s1fyxzMIRWnpQxSJPxgaePDjL7ymSwOghihcn63x yanghan@jinji-inc.com' > ~/.ssh/id_rsa.pub
+
+ONBUILD COPY requirements.txt /usr/src/service/
+ONBUILD RUN pip install --no-cache-dir -r requirements.txt
+ONBUILD COPY . /usr/src/service
+
+RUN pip install grpcio grpcio-tools
