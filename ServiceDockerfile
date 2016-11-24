@@ -1,4 +1,4 @@
-FROM skoogi/base
+FROM daocloud.io/skoogi/base
 
 RUN mkdir -p /usr/src/service
 WORKDIR /usr/src/service
